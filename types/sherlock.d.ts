@@ -1,4 +1,4 @@
-import {PropertyBag} from '../lib/PropertyBag'
+import {PropertyBag} from '../src/PropertyBag'
 
 export type Observable<T extends object> = T & {
     propertyBag: PropertyBag

@@ -1,4 +1,4 @@
-import {Sherlock} from '../lib/Sherlock'
+import {Sherlock} from '../src/Sherlock'
 import {createEmployee} from './helpers/factories'
 import {expect} from 'chai'
 

@@ -9,8 +9,8 @@
   ],
   "scripts": {
     "coverage": "nyc mocha \"test/**/Test*.ts\"",
-    "eslint": "eslint --ext .js,.ts lib/ test/ types/",
-    "eslint:fix": "eslint --ext .js,.ts --fix lib/ test/ types/",
+    "eslint": "eslint --ext .js,.ts src/ test/ types/",
+    "eslint:fix": "eslint --ext .js,.ts --fix src/ test/ types/",
     "test": "mocha \"test/**/Test*.ts\""
   },
   "dependencies": {
@@ -26,6 +26,7 @@
     "@typescript-eslint/eslint-plugin": "^1.10.2",
     "@typescript-eslint/parser": "^1.10.2",
     "acorn": "^7.0.0",
+    "chai": "^4.2.0",
     "eslint": "^5.16.0",
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-node": "^9.1.0",

@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
-    "baseUrl": "./lib",
+    "baseUrl": "./src",
     "module": "commonjs",
     "moduleResolution": "classic",
     "strict": true,
     "target": "es6"
   },
   "include": [
-    "./lib/**/*",
+    "./src/**/*",
     "./test/**/*",
     "./types/**/*"
   ]

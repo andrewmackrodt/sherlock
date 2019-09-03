@@ -7,7 +7,7 @@
 *.lock
 !Gemfile.lock
 !composer.lock
-!package-json.lock
+!package-lock.json
 !yarn.lock
 
 # test
