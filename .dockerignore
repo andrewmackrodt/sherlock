@@ -1,0 +1,14 @@
+bower_components/
+build/
+coverage/
+node_modules/
+vendor/
+.idea/
+.git/
+Dockerfile
+README.md
+docker-compose*.yml
+scratch.*
+.dockerignore
+.env
+.gitignore

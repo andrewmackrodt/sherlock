@@ -1,0 +1,30 @@
+# dependencies
+/bower_components/
+/node_modules/
+/vendor/
+
+# lock files
+*.lock
+!Gemfile.lock
+!composer.lock
+!package-json.lock
+!yarn.lock
+
+# test
+/coverage/
+/.nyc_output/
+
+# general
+/build/
+docker-compose.override.yml
+.env
+!.env.*
+*.log
+
+# editor
+/.idea/
+*.iml
+
+# platform
+*~
+.DS_Store
