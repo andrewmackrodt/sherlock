@@ -34,7 +34,7 @@ export class PropertyBag {
 
     public original(flatten: boolean = false): Properties {
         const keys = Object.keys(this._original).filter(x => this.children.indexOf(x) === -1)
-        const original = this.extract(this._properties, keys, (bag) => bag.properties(flatten))
+        const original = this.extract(this._original, keys, (bag) => bag.properties(flatten))
 
         return flatten ? dot(original) : object(original)
     }
