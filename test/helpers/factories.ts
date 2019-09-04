@@ -8,6 +8,8 @@ export class Person {
     public firstName: string
     public lastName: string
     public age?: number
+    public dateJoined?: Date
+    public dateLeft?: Date
 
     public constructor(ctor: PersonConstructor) {
         this.firstName = ctor.firstName

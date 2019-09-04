@@ -10,6 +10,7 @@ type ChangeFormat = 'default' | 'flat' | 'object'
 
 import {dot, object} from 'dot-object'
 import _ = require('lodash')
+import {DateObservable} from './DateObservable'
 
 // export interface PropertyChange {
 //     newValue: any
@@ -33,10 +34,7 @@ export class PropertyBag {
     protected _original: Properties = {}
 
     public original(flatten: boolean = false): Properties {
-        const keys = Object.keys(this._original).filter(x => this.children.indexOf(x) === -1)
-        const original = this.extract(this._original, keys, (bag) => bag.properties(flatten))
-
-        return flatten ? dot(original) : object(original)
+        return flatten ? dot(this._original) : this._original
     }
 
     //endregion
@@ -159,7 +157,7 @@ export class PropertyBag {
         this._adding = []
         this._deleting = []
 
-        this._original = _.clone(this._properties)
+        this._original = _.cloneDeep(this.properties())
 
         for (const child of this.children) {
             const bag: PropertyBag = this._properties[child].propertyBag
@@ -184,9 +182,13 @@ export class PropertyBag {
         return this._properties[p]
     }
 
-    public set(p: PropertyBagKey, value: any) {
+    public set(p: PropertyBagKey, value: any, force: boolean = false) {
         const previous = this._properties[p]
         const previousIsBag = typeof previous === 'object' && 'propertyBag' in previous
+
+        if (previous instanceof DateObservable) {
+            previous.unregister()
+        }
 
         if (typeof value === 'object' && 'propertyBag' in value) {
             if (previousIsBag) {
@@ -199,11 +201,11 @@ export class PropertyBag {
 
             this.addPropertyKey(p, this.children)
         } else {
-            if (_.isEqual(value, previous)) {
+            this._properties[p] = value
+
+            if ( ! force && _.isEqual(value, previous)) {
                 return
             }
-
-            this._properties[p] = value
 
             const original = this._original[p]
 

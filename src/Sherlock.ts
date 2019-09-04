@@ -1,9 +1,9 @@
-import {SherlockHandler} from './SherlockHandler'
+import {ArrayObservable} from './ArrayObservable'
 import {Observable, ObserveOptions} from '../types/sherlock'
 import {PropertyBag} from './PropertyBag'
+import {SherlockHandler} from './SherlockHandler'
 
 import _ = require('lodash')
-import {ArrayObservable} from './ArrayObservable'
 
 export class Sherlock {
     public static observe<T extends object>(target: T, options?: ObserveOptions): Observable<T> {

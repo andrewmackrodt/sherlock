@@ -1,4 +1,5 @@
 import {ArrayObservable} from './ArrayObservable'
+import {DateObservable} from './DateObservable'
 import {Observable, ObserveOptions} from '../types/sherlock'
 import {Sherlock} from './Sherlock'
 
@@ -63,15 +64,33 @@ export class SherlockHandler<T extends object, U extends Observable<T>> implemen
             return true
         }
 
+        let force = false
+
         // recursively proxy child object if options.deep
-        if (this.options.deep && typeof value === 'object' && value !== null) {
-            value = _.clone(value)
-            for (const [k, v] of Object.entries(value)) {
-                if (typeof v === 'object' && v !== null) {
-                    value[k] = Sherlock.observe(v, this.options)
+        if (this.options.deep
+            && typeof value === 'object'
+            && value !== null
+        ) {
+            if ( ! (value instanceof Date)) {
+                // clone the value so that modifications to the original value
+                // do not affect values in the PropertyBag
+                value = _.clone(value)
+
+                for (const [k, v] of Object.entries(value)) {
+                    if (typeof v === 'object' && v !== null) {
+                        value[k] = Sherlock.observe(v, this.options)
+                    }
                 }
+
+                value = Sherlock.observe(value, this.options)
+            } else {
+                value = DateObservable.create(value, function (this: DateObservable) {
+                    target.propertyBag.set(p as string, this, force)
+                })
+
+                // force setting the value on the property bag
+                force = true
             }
-            value = Sherlock.observe(value, this.options)
         }
 
         if (target instanceof ArrayObservable
@@ -80,13 +99,13 @@ export class SherlockHandler<T extends object, U extends Observable<T>> implemen
         ) {
             p = Number.parseInt(p, 10)
 
-            target.propertyBag.set(p, value)
+            target.propertyBag.set(p, value, force)
 
             if (p >= target.length) {
                 target.length = p + 1
             }
         } else {
-            target.propertyBag.set(p, value)
+            target.propertyBag.set(p, value, force)
         }
 
         return true
