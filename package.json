@@ -8,33 +8,33 @@
     }
   ],
   "scripts": {
-    "coverage": "nyc mocha \"test/**/Test*.ts\"",
+    "coverage": "nyc mocha \"test/**/*Test.ts\"",
     "eslint": "eslint --ext .js,.ts src/ test/ types/",
     "eslint:fix": "eslint --ext .js,.ts --fix src/ test/ types/",
-    "test": "mocha \"test/**/Test*.ts\""
+    "test": "mocha \"test/**/*Test.ts\""
   },
   "dependencies": {
-    "dot-object": "^1.9.0",
-    "lodash": "^4.17.15"
+    "dot-object": "^2.1.0",
+    "lodash": "^4.17.0"
   },
   "devDependencies": {
-    "@types/chai": "^4.1.7",
+    "@types/chai": "^4.2.0",
     "@types/dot-object": "^1.7.0",
-    "@types/lodash": "^4.14.136",
-    "@types/mocha": "^5.2.7",
-    "@types/node": "^12.6.8",
-    "@typescript-eslint/eslint-plugin": "^1.10.2",
-    "@typescript-eslint/parser": "^1.10.2",
-    "acorn": "^7.0.0",
+    "@types/lodash": "^4.14.0",
+    "@types/mocha": "^5.2.0",
+    "@types/node": "^12.12.0",
+    "@typescript-eslint/eslint-plugin": "^2.12.0",
+    "@typescript-eslint/parser": "^2.12.0",
+    "acorn": "^7.1.0",
     "chai": "^4.2.0",
-    "eslint": "^5.16.0",
-    "eslint-plugin-import": "^2.17.3",
-    "eslint-plugin-node": "^9.1.0",
-    "eslint-plugin-promise": "^4.1.1",
-    "mocha": "^6.1.4",
-    "nyc": "^14.1.1",
-    "ts-node": "^7.0.1",
-    "typescript": "^3.2.2"
+    "eslint": "^6.7.0",
+    "eslint-plugin-import": "^2.19.0",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.0",
+    "mocha": "^6.2.0",
+    "nyc": "^14.1.0",
+    "ts-node": "^8.5.0",
+    "typescript": "^3.7.0"
   },
   "nyc": {
     "extension": [
